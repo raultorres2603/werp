@@ -12,6 +12,8 @@ export function Login() {
     console.log(ev);
     setUsername(Encrypter.encryptAES(ev.target.elements.username_inp.value));
     setPassword(Encrypter.encryptAES(ev.target.elements.password_inp.value));
+    console.log(`User: ${username}`);
+    console.log(`Password:${password}`);
   }
 
   return (

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { ContextProvider } from "./components/ContextApp";
 import { ViewController } from "./components/ViewController";
+import { Socket } from "socket.io-client";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";

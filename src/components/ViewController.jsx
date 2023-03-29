@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { appContext } from "./contextApp";
+import { useContext, useEffect, useState } from "react";
+import { appContext } from "./ContextApp";
 import { Login } from "./Login";
 
 export function ViewController() {
@@ -16,7 +16,5 @@ export function ViewController() {
     }
   }
 
-  return handlePage;
+  return <div className="viewController">{handlePage()}</div>;
 }
-
-export default App;

@@ -2,18 +2,35 @@ import { useState } from "react";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 import { Encrypter } from "../lib/Encrypter";
+import config from "../config.json";
+import { Users } from "../lib/Users";
 
 export function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  function sendLogin(ev) {
+  async function sendLogin(ev) {
     ev.preventDefault();
     console.log(ev);
     setUsername(Encrypter.encryptAES(ev.target.elements.username_inp.value));
     setPassword(Encrypter.encryptAES(ev.target.elements.password_inp.value));
-    console.log(`User: ${username}`);
-    console.log(`Password:${password}`);
+    let user = new Users(username, password);
+    let response = await user.login();
+    if (response.err) {
+      alert("Error: " + response.err);
+    } else {
+      switch (response.res) {
+        case 500:
+          alert("Can't find that user, it exists or password is wrong.");
+          break;
+        case 200:
+          sessionStorage.setItem("user", response.id);
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 
   return (

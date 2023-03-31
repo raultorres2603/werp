@@ -62,7 +62,7 @@ export function Register() {
         </div>
         <div className="row mt-2">
           <div className="col-sm-6">
-            <div class="d-grid gap-2">
+            <div className="d-grid gap-2">
               <button type="submit" className="btn btn-success fs-4">
                 Success
               </button>

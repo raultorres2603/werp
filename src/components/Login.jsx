@@ -85,7 +85,7 @@ export function Login() {
             </div>
           </div>
           <div className="col-sm-6">
-            <div class="d-grid gap-2">
+            <div className="d-grid gap-2">
               <button
                 type="button"
                 onClick={changeView}

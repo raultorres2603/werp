@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { appContext } from "./ContextApp";
 import { Login } from "./Login";
+import { Register } from "./Register";
 
 export function ViewController() {
   const { page } = useContext(appContext);
@@ -9,6 +10,10 @@ export function ViewController() {
     switch (page) {
       case "login":
         return <Login />;
+        break;
+
+      case "register":
+        return <Register />;
         break;
 
       default:

@@ -18,6 +18,23 @@ export function Register() {
     setUsername(Encrypter.encryptAES(ev.target.elements.username_inp.value));
     setPassword(Encrypter.encryptAES(ev.target.elements.password_inp.value));
     let user = new Users(username, password);
+    let response = await user.register();
+    if (response.err) {
+      alert("Error: " + response.err);
+    } else {
+      switch (response.res) {
+        case 500:
+          alert("Can't register that user, it exists or password is wrong.");
+          break;
+        case 200:
+          sessionStorage.setItem("user", response.id);
+          savePage("main");
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 
   return (

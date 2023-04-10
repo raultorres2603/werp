@@ -40,4 +40,18 @@ export class Users {
 
     return response.data;
   }
+
+  async register() {
+    let response = await axios.post(
+      `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
+        import.meta.env.VITE_PORT
+      }/users/register`,
+      {
+        username: this.getUsername(),
+        password: this.getPassword(),
+      }
+    );
+
+    return response.data;
+  }
 }

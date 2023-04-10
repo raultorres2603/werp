@@ -28,6 +28,7 @@ export function Login() {
           break;
         case 200:
           sessionStorage.setItem("user", response.id);
+          savePage("main");
           break;
 
         default:

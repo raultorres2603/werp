@@ -12,13 +12,32 @@ export function Register() {
     savePage("login");
   }
 
+  function handleInput(ev) {
+    switch (ev.target.id) {
+      case "username_inp":
+        setUsername(Encrypter.encryptAES(ev.target.value));
+        console.log(ev.target.value);
+        break;
+
+      case "password_inp":
+        setPassword(Encrypter.encryptAES(ev.target.value));
+        console.log(ev.target.value);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   async function sendRegister(ev) {
     ev.preventDefault();
     console.log(ev);
-    setUsername(Encrypter.encryptAES(ev.target.elements.username_inp.value));
-    setPassword(Encrypter.encryptAES(ev.target.elements.password_inp.value));
+    console.log(username);
+    console.log(password);
     let user = new Users(username, password);
+    console.log(user);
     let response = await user.register();
+    console.log(response);
     if (response.err) {
       alert("Error: " + response.err);
     } else {
@@ -57,6 +76,7 @@ export function Register() {
                 className="form-control fs-4"
                 id="username_inp"
                 placeholder="Type here!"
+                onInput={handleInput}
               />
             </div>
           </div>
@@ -73,6 +93,7 @@ export function Register() {
                 className="form-control fs-4"
                 id="password_inp"
                 placeholder="Type here!"
+                onInput={handleInput}
               />
             </div>
           </div>

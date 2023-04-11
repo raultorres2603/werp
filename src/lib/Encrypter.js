@@ -4,10 +4,7 @@ export class Encrypter {
   constructor() {}
 
   static encryptAES(text) {
-    let encryptedText = CryptoJS.AES.encrypt(
-      text,
-      import.meta.env.VITE_SECRET_KEY_ENCRYPT
-    ).toString();
+    let encryptedText = CryptoJS.SHA256(text).toString();
     return encryptedText;
   }
 }

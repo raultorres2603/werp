@@ -12,11 +12,26 @@ export function Login() {
     savePage("register");
   }
 
+  function handleInput(ev) {
+    switch (ev.target.id) {
+      case "username_inp":
+        setUsername(Encrypter.encryptAES(ev.target.value));
+        console.log(username);
+        break;
+
+      case "password_inp":
+        setPassword(Encrypter.encryptAES(ev.target.value));
+        console.log(password);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   async function sendLogin(ev) {
     ev.preventDefault();
     console.log(ev);
-    setUsername(Encrypter.encryptAES(ev.target.elements.username_inp.value));
-    setPassword(Encrypter.encryptAES(ev.target.elements.password_inp.value));
     let user = new Users(username, password);
     let response = await user.login();
     if (response.err) {
@@ -56,6 +71,7 @@ export function Login() {
                 type="text"
                 className="form-control fs-4"
                 id="username_inp"
+                onInput={handleInput}
                 placeholder="Type here!"
               />
             </div>
@@ -72,6 +88,7 @@ export function Login() {
                 type="password"
                 className="form-control fs-4"
                 id="password_inp"
+                onInput={handleInput}
                 placeholder="Type here!"
               />
             </div>

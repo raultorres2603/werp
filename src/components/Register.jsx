@@ -15,13 +15,11 @@ export function Register() {
   function handleInput(ev) {
     switch (ev.target.id) {
       case "username_inp":
-        setUsername(Encrypter.encryptAES(ev.target.value));
-        console.log(ev.target.value);
+        setUsername(Encrypter.encrypt(ev.target.value));
         break;
 
       case "password_inp":
-        setPassword(Encrypter.encryptAES(ev.target.value));
-        console.log(ev.target.value);
+        setPassword(Encrypter.encrypt(ev.target.value));
         break;
 
       default:
@@ -31,13 +29,8 @@ export function Register() {
 
   async function sendRegister(ev) {
     ev.preventDefault();
-    console.log(ev);
-    console.log(username);
-    console.log(password);
     let user = new Users(username, password);
-    console.log(user);
     let response = await user.register();
-    console.log(response);
     if (response.err) {
       alert("Error: " + response.err);
     } else {

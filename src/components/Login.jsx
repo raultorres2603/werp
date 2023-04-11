@@ -15,13 +15,11 @@ export function Login() {
   function handleInput(ev) {
     switch (ev.target.id) {
       case "username_inp":
-        setUsername(Encrypter.encryptAES(ev.target.value));
-        console.log(username);
+        setUsername(Encrypter.encrypt(ev.target.value));
         break;
 
       case "password_inp":
-        setPassword(Encrypter.encryptAES(ev.target.value));
-        console.log(password);
+        setPassword(Encrypter.encrypt(ev.target.value));
         break;
 
       default:
@@ -31,7 +29,6 @@ export function Login() {
 
   async function sendLogin(ev) {
     ev.preventDefault();
-    console.log(ev);
     let user = new Users(username, password);
     let response = await user.login();
     if (response.err) {

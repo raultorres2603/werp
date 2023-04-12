@@ -15,7 +15,7 @@ export function ContextProvider({ children }) {
   );
 
   return (
-    <appContext.Provider value={{ page, savePage }}>
+    <appContext.Provider value={{ page, savePage, socket }}>
       {children}
     </appContext.Provider>
   );

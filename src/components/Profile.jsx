@@ -18,69 +18,128 @@ export function Profile() {
       style={{ width: "100vw", height: "100vh" }}
     >
       <div className="card">
-        <h5 className="card-header">Featured</h5>
+        <h5 className="card-header">My Profile</h5>
         <div className="card-body">
-          <h5 className="card-title">My Profile</h5>
           <div className="card-text">
             {infoFilled && (
               <div className="info">
                 <div className="row">
                   <div className="col-4">
-                    <div className="input-group input-group">
-                      <span
-                        className="input-group-text"
-                        id="inputGroup-sizing-lg"
-                      >
-                        Alias
-                      </span>
-                      <input
-                        type="text"
-                        id="alias"
-                        defaultValue={profileInfo.alias}
-                        className="form-control"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg"
-                      />
+                    <div className="row">
+                      <div className="input-group input-group">
+                        <span
+                          className="input-group-text"
+                          id="inputGroup-sizing-lg"
+                        >
+                          Alias
+                        </span>
+                        <input
+                          type="text"
+                          id="alias"
+                          defaultValue={profileInfo.alias}
+                          className="form-control"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                        />
+                      </div>
+                    </div>
+                    <div className="row mt-3">
+                      <div className="input-group input-group">
+                        <span
+                          className="input-group-text"
+                          id="inputGroup-sizing-lg"
+                        >
+                          Name
+                        </span>
+                        <input
+                          type="text"
+                          id="name"
+                          defaultValue={profileInfo.name}
+                          className="form-control"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="col-4">
-                    <div className="input-group input-group">
-                      <span
-                        className="input-group-text"
-                        id="inputGroup-sizing-lg"
-                      >
-                        Creation
-                      </span>
-                      <input
-                        type="text"
-                        id="creation"
-                        readOnly
-                        disabled
-                        defaultValue={new Date(
-                          profileInfo.creation
-                        ).toLocaleString("en-GB")}
-                        className="form-control"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg"
-                      />
+                    <div className="row">
+                      <div className="input-group input-group">
+                        <span
+                          className="input-group-text"
+                          id="inputGroup-sizing-lg"
+                        >
+                          Creation
+                        </span>
+                        <input
+                          type="text"
+                          id="creation"
+                          readOnly
+                          disabled
+                          defaultValue={new Date(
+                            profileInfo.creation
+                          ).toLocaleString("en-GB")}
+                          className="form-control"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                        />
+                      </div>
+                    </div>
+                    <div className="row mt-3">
+                      <div className="input-group input-group">
+                        <span
+                          className="input-group-text"
+                          id="inputGroup-sizing-lg"
+                        >
+                          Surname
+                        </span>
+                        <input
+                          type="text"
+                          id="fsurname"
+                          defaultValue={profileInfo.fsurname}
+                          className="form-control"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="col-4">
-                    <div className="input-group input-group">
-                      <span
-                        className="input-group-text"
-                        id="inputGroup-sizing-lg"
-                      >
-                        NIF
-                      </span>
-                      <input
-                        type="text"
-                        id="name"
-                        defaultValue={profileInfo.nif}
-                        className="form-control"
-                        aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-lg"
-                      />
+                    <div className="row">
+                      <div className="input-group input-group">
+                        <span
+                          className="input-group-text"
+                          id="inputGroup-sizing-lg"
+                        >
+                          NIF
+                        </span>
+                        <input
+                          type="text"
+                          id="nif"
+                          defaultValue={profileInfo.nif}
+                          className="form-control"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                        />
+                      </div>
+                    </div>
+                    <div className="row mt-3">
+                      <div className="input-group input-group">
+                        <span
+                          className="input-group-text"
+                          id="inputGroup-sizing-lg"
+                        >
+                          Alias
+                        </span>
+                        <input
+                          type="text"
+                          id="ssurname"
+                          defaultValue={profileInfo.ssurname}
+                          className="form-control"
+                          aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-lg"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -88,7 +147,7 @@ export function Profile() {
             )}
           </div>
           <div className="row">
-            <a href="#" className="btn btn-primary mt-4">
+            <a href="#" className="btn btn-info mt-4">
               Save
             </a>
           </div>

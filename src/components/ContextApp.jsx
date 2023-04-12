@@ -8,7 +8,11 @@ export function ContextProvider({ children }) {
     sessionStorage.getItem("user") ? "main" : "login"
   );
 
-  const socket = io("http://localhost:3000");
+  const socket = io(
+    `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
+      import.meta.env.VITE_PORT
+    }`
+  );
 
   return (
     <appContext.Provider value={{ page, savePage }}>

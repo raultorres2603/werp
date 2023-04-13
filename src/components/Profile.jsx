@@ -165,11 +165,6 @@ export function Profile() {
               </div>
             )}
           </div>
-          <div className="row">
-            <a href="#" className="btn btn-info mt-4">
-              Save
-            </a>
-          </div>
         </div>
       </div>
     </div>

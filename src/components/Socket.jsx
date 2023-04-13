@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { appContext } from "./ContextApp";
-import { io } from "socket.io-client";
 import { socketContext } from "./ContextSocket";
 
 export function Socket() {
@@ -33,7 +32,7 @@ export function Socket() {
   }
 
   return (
-    <div className="socketDiv fs-5">
+    <div className="socketDiv fs-6">
       State of socket: {connected ? "Connected" : "Disconnected"}
     </div>
   );

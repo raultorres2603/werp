@@ -8,14 +8,21 @@ export function ContextProvider({ children }) {
     sessionStorage.getItem("user") ? "main" : "login"
   );
 
-  const socket = io(
+  const [employees, setEmployees] = useState(null);
+
+  const [request, setRequest] = useState({});
+
+  /*const socket = io(
     `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
       import.meta.env.VITE_PORT
     }`
   );
+  */
 
   return (
-    <appContext.Provider value={{ page, savePage, socket }}>
+    <appContext.Provider
+      value={{ savePage, setEmployees, setRequest, request, page }}
+    >
       {children}
     </appContext.Provider>
   );

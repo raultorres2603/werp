@@ -9,9 +9,6 @@ export function ContextProvider({ children }) {
   );
 
   const [employees, setEmployees] = useState(null);
-
-  const [request, setRequest] = useState({});
-
   /*const socket = io(
     `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
       import.meta.env.VITE_PORT
@@ -20,9 +17,7 @@ export function ContextProvider({ children }) {
   */
 
   return (
-    <appContext.Provider
-      value={{ savePage, setEmployees, setRequest, request, page }}
-    >
+    <appContext.Provider value={{ savePage, setEmployees, page }}>
       {children}
     </appContext.Provider>
   );

@@ -4,16 +4,15 @@ import { socketContext } from "./ContextSocket";
 
 export function Socket() {
   const [connected, setConnected] = useState(false);
-  const { request } = useContext(appContext);
-  const { socket } = useContext(socketContext);
+  const [requested, setRequested] = useState(null);
+  const { socket, request } = useContext(socketContext);
 
   useEffect(() => {
     addSocketListeners();
   }, []);
 
   useEffect(() => {
-    if (request != {})
-      socket.emit(request.req, { field: request.field, value: request.value });
+    if (request != {}) socket.emit(request.req, { fields: request.fields });
   }, [request]);
 
   function addSocketListeners() {
@@ -26,7 +25,7 @@ export function Socket() {
       console.log(socket);
     });
 
-    socket.on("updatedInfo", (args) => {
+    socket.on("updatedProfileInfo", (args) => {
       console.log(args);
     });
   }

@@ -35,7 +35,7 @@ export function Socket() {
   }
 
   return (
-    <div className="socketDiv fs-6">
+    <div className="socketDiv fs-6 d-flex justify-content-center">
       State of socket: {connected ? "Connected" : "Disconnected"}
     </div>
   );

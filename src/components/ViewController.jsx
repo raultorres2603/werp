@@ -8,6 +8,7 @@ export function ViewController() {
   const { page } = useContext(appContext);
 
   function handlePage() {
+    document.title = `WERP - ${page.toUpperCase()}`;
     switch (page) {
       case "login":
         return <Login />;

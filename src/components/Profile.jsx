@@ -196,7 +196,7 @@ export function Profile() {
                     </div>
                     <div className="row mt-3">
                       <button type="submit" className="btn btn-success">
-                        Update
+                        Update Profile
                       </button>
                     </div>
                   </form>

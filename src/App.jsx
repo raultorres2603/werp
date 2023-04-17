@@ -10,8 +10,12 @@ import "./App.css";
 import { SocketProvider } from "./components/ContextSocket";
 
 function App() {
+  useEffect(() => {
+    document.title = "WERP";
+  }, []);
+
   return (
-    <div className="App">
+    <div className="App" style={{ width: "100vw" }}>
       <SocketProvider>
         <ContextProvider>
           <ViewController />

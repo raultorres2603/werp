@@ -5,7 +5,7 @@ import { socketContext } from "./ContextSocket";
 export function Socket() {
   const [connected, setConnected] = useState(false);
   const [requested, setRequested] = useState(null);
-  const { socket, request } = useContext(socketContext);
+  const { socket, request, setSocketResponse } = useContext(socketContext);
 
   useEffect(() => {
     addSocketListeners();
@@ -26,7 +26,11 @@ export function Socket() {
     });
 
     socket.on("updatedProfileInfo", (args) => {
-      console.log(args);
+      if (args.error) {
+        setSocketResponse({ error: args.error });
+      } else {
+        setSocketResponse({ result: "Updated Correctly!" });
+      }
     });
   }
 

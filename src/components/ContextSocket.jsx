@@ -12,8 +12,12 @@ export function SocketProvider({ children }) {
       }`
     )
   );
+  const [socketResponse, setSocketResponse] = useState(null);
+
   return (
-    <socketContext.Provider value={{ socket, setRequest, request }}>
+    <socketContext.Provider
+      value={{ socket, setRequest, request, socketResponse, setSocketResponse }}
+    >
       {children}
     </socketContext.Provider>
   );

@@ -6,7 +6,7 @@ import { socketContext } from "./ContextSocket";
 export function Profile() {
   const [profileInfo, setProfileInfo] = useState(null);
   const [infoFilled, setInfoFilled] = useState(false);
-  const { setRequest } = useContext(socketContext);
+  const { setRequest, socketResponse } = useContext(socketContext);
 
   useEffect(() => {
     Users.profile().then((res) => {
@@ -23,11 +23,11 @@ export function Profile() {
       req: "updateProfile",
       fields: {
         alias: ev.target.elements.alias.value,
-        creation: ev.target.elements.creation.value,
         fsurname: ev.target.elements.fsurname.value,
         name: ev.target.elements.name.value,
         nif: ev.target.elements.nif.value,
         ssurname: ev.target.elements.ssurname.value,
+        user: sessionStorage.getItem("user"),
       },
     });
   }
@@ -41,6 +41,35 @@ export function Profile() {
         <div className="card">
           <h5 className="card-header bg-info text-center fs-2">My Profile</h5>
           <div className="card-body">
+            {socketResponse && socketResponse.error && (
+              <div
+                className="alert alert-danger alert-dismissible fade show"
+                role="alert"
+              >
+                {socketResponse.error}
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+            )}
+            {socketResponse && socketResponse.result && (
+              <div
+                className="alert alert-success alert-dismissible fade show"
+                role="alert"
+              >
+                {socketResponse.result}
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+            )}
+
             <div className="card-text">
               {infoFilled && (
                 <div className="info">
@@ -113,7 +142,7 @@ export function Profile() {
                               className="input-group-text"
                               id="inputGroup-sizing-lg"
                             >
-                              Surname
+                              First Surname
                             </span>
                             <input
                               type="text"
@@ -151,7 +180,7 @@ export function Profile() {
                               className="input-group-text"
                               id="inputGroup-sizing-lg"
                             >
-                              Alias
+                              Second Surname
                             </span>
                             <input
                               type="text"

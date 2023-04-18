@@ -4,6 +4,7 @@ import { Login } from "./Login";
 import { Register } from "./Register";
 import { Main } from "./Main";
 import { Profile } from "./Profile";
+import { Navbar } from "./Navbar";
 
 export function ViewController() {
   const { page } = useContext(appContext);
@@ -20,10 +21,22 @@ export function ViewController() {
         break;
 
       case "main":
-        return <Main />;
+        return (
+          <>
+            {" "}
+            <Navbar />
+            <Main />
+          </>
+        );
         break;
       case "profile":
-        return <Profile />;
+        return (
+          <>
+            {" "}
+            <Navbar />
+            <Profile />
+          </>
+        );
         break;
 
       default:

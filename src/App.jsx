@@ -20,10 +20,6 @@ function App() {
       <SocketProvider>
         <ContextProvider>
           <div className="row">
-            <Navbar />
-          </div>
-          <div className="row">
-            {" "}
             <ViewController />
           </div>
           <div className="row">

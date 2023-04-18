@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { ContextProvider } from "./components/ContextApp";
 import { ViewController } from "./components/ViewController";
+import { Navbar } from "./components/Navbar";
 import { Socket } from "./components/Socket";
 import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -15,11 +16,19 @@ function App() {
   }, []);
 
   return (
-    <div className="App" style={{ width: "100vw" }}>
+    <div className="App" style={{ width: "100vw", height: "100vh" }}>
       <SocketProvider>
         <ContextProvider>
-          <ViewController />
-          <Socket />
+          <div className="row">
+            <Navbar />
+          </div>
+          <div className="row">
+            {" "}
+            <ViewController />
+          </div>
+          <div className="row">
+            <Socket />
+          </div>
         </ContextProvider>
       </SocketProvider>
     </div>

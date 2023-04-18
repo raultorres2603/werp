@@ -3,6 +3,7 @@ import { appContext } from "./ContextApp";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { Main } from "./Main";
+import { Profile } from "./Profile";
 
 export function ViewController() {
   const { page } = useContext(appContext);
@@ -20,6 +21,9 @@ export function ViewController() {
 
       case "main":
         return <Main />;
+        break;
+      case "profile":
+        return <Profile />;
         break;
 
       default:

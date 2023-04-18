@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Users } from "../lib/Users";
-import { appContext } from "./ContextApp";
 import { socketContext } from "./ContextSocket";
 
 export function Profile() {

@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import { socketContext } from "./ContextSocket";
 
 export const appContext = createContext();
 
@@ -7,17 +8,15 @@ export function ContextProvider({ children }) {
   const [page, savePage] = useState(
     sessionStorage.getItem("user") ? "main" : "login"
   );
+  const { setRequest } = useContext(socketContext);
+  const [hrUsers, setHrUsers] = useState([]);
 
-  const [employees, setEmployees] = useState(null);
-  /*const socket = io(
-    `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
-      import.meta.env.VITE_PORT
-    }`
-  );
-  */
+  useEffect(() => {
+    setRequest({ req: "getHrUsers", fields: {} });
+  }, []);
 
   return (
-    <appContext.Provider value={{ savePage, setEmployees, page }}>
+    <appContext.Provider value={{ savePage, page, hrUsers }}>
       {children}
     </appContext.Provider>
   );

@@ -58,7 +58,13 @@ export function Navbar() {
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a
+                    className="dropdown-item"
+                    href="#"
+                    onClick={() => {
+                      changePage("hr");
+                    }}
+                  >
                     HR
                   </a>
                 </li>

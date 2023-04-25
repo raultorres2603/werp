@@ -5,6 +5,7 @@ import { Register } from "./Register";
 import { Main } from "./Main";
 import { Profile } from "./Profile";
 import { Navbar } from "./Navbar";
+import { HR } from "./HR";
 
 export function ViewController() {
   const { page } = useContext(appContext);
@@ -35,6 +36,16 @@ export function ViewController() {
             {" "}
             <Navbar />
             <Profile />
+          </>
+        );
+        break;
+
+      case "hr":
+        return (
+          <>
+            {" "}
+            <Navbar />
+            <HR />
           </>
         );
         break;

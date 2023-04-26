@@ -16,7 +16,7 @@ export function ContextProvider({ children }) {
   }, []);
 
   return (
-    <appContext.Provider value={{ savePage, page, hrUsers }}>
+    <appContext.Provider value={{ savePage, page, hrUsers, setHrUsers }}>
       {children}
     </appContext.Provider>
   );

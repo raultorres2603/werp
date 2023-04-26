@@ -1,4 +1,13 @@
+import { useContext } from "react";
+import { appContext } from "./ContextApp";
+import { socketContext } from "./ContextSocket";
+
 export function HR() {
+  const { hrUsers } = useContext(appContext);
+  const { setRequest } = useContext(socketContext);
+
+  function handleChange(ev) {}
+
   return (
     <>
       <div className="hrContainer mt-3">
@@ -23,7 +32,75 @@ export function HR() {
                         <th scope="col">Department</th>
                       </tr>
                     </thead>
-                    <tbody id="userBodyTable"></tbody>
+                    <tbody id="userBodyTable">
+                      {hrUsers.map((v, i) => (
+                        <tr key={i}>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control"
+                              onChange={handleChange}
+                              id="nif"
+                              defaultValue={v.nif}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control"
+                              onChange={handleChange}
+                              id="name"
+                              defaultValue={v.name}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control"
+                              onChange={handleChange}
+                              id="fsurname"
+                              defaultValue={v.fsurname}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control"
+                              onChange={handleChange}
+                              id="ssurname"
+                              defaultValue={v.ssurname}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control"
+                              onChange={handleChange}
+                              id="phone"
+                              defaultValue={v.phone}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control"
+                              onChange={handleChange}
+                              id="type"
+                              defaultValue={v.type}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              class="form-control"
+                              onChange={handleChange}
+                              id="depname"
+                              defaultValue={v.depname}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
                   </table>
                 </div>
               </div>

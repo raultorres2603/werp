@@ -6,6 +6,7 @@ export function Socket() {
   const [connected, setConnected] = useState(false);
   const [requested, setRequested] = useState(null);
   const { socket, request, setSocketResponse } = useContext(socketContext);
+  const { setHrUsers } = useContext(appContext);
 
   useEffect(() => {
     addSocketListeners();
@@ -30,6 +31,14 @@ export function Socket() {
         setSocketResponse({ error: args.error });
       } else {
         setSocketResponse({ result: "Updated Correctly!" });
+      }
+    });
+
+    socket.on("getHrUsersOk", (args) => {
+      if (args.hasOwnProperty("err")) {
+        alert(`It has been an error: ${args.err}`);
+      } else {
+        setHrUsers(args.res);
       }
     });
   }

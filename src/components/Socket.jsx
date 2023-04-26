@@ -38,7 +38,7 @@ export function Socket() {
       if (args.hasOwnProperty("err")) {
         alert(`It has been an error: ${args.err.message}`);
       } else {
-        console.log(args);
+        console.log(args.res);
         setHrUsers(args.res);
       }
     });

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import { ContextProvider } from "./components/ContextApp";
+import { InitSocketProvider } from "./components/ContextInitSocket";
 import { ViewController } from "./components/ViewController";
 import { Navbar } from "./components/Navbar";
 import { Socket } from "./components/Socket";
@@ -17,16 +18,18 @@ function App() {
 
   return (
     <div className="App" style={{ width: "100vw", height: "100vh" }}>
-      <SocketProvider>
-        <ContextProvider>
-          <div className="row">
-            <ViewController />
-          </div>
-          <div className="row">
-            <Socket />
-          </div>
-        </ContextProvider>
-      </SocketProvider>
+      <InitSocketProvider>
+        <SocketProvider>
+          <ContextProvider>
+            <div className="row">
+              <ViewController />
+            </div>
+            <div className="row">
+              <Socket />
+            </div>
+          </ContextProvider>
+        </SocketProvider>
+      </InitSocketProvider>
     </div>
   );
 }

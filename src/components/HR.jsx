@@ -1,12 +1,25 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { appContext } from "./ContextApp";
 import { socketContext } from "./ContextSocket";
 
 export function HR() {
-  const { hrUsers } = useContext(appContext);
-  const { setRequest } = useContext(socketContext);
+  const { hrUsers, depts } = useContext(appContext);
+  const { setRequest, socketResponse } = useContext(socketContext);
+  const [fields, setFields] = useState([]);
 
-  function handleChange(ev) {}
+  function handleChange(ev) {
+    hrUsers[ev.target.dataset.userpos][ev.target.id] = ev.target.value;
+    console.log(hrUsers);
+  }
+
+  function sendChanges() {
+    setRequest({
+      req: "updateInfoHR",
+      fields: {
+        users: hrUsers,
+      },
+    });
+  }
 
   return (
     <>
@@ -15,6 +28,36 @@ export function HR() {
           <div className="card">
             <h5 className="card-header fs-2 bg-info text-center">My HR</h5>
             <div className="card-body">
+              <div className="row">
+                {socketResponse && socketResponse.error && (
+                  <div
+                    className="alert alert-danger alert-dismissible fade show"
+                    role="alert"
+                  >
+                    {socketResponse.error}
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                )}
+                {socketResponse && socketResponse.result && (
+                  <div
+                    className="alert alert-success alert-dismissible fade show"
+                    role="alert"
+                  >
+                    {socketResponse.result}
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                )}
+              </div>
               <div className="row">
                 <div className="table-responsive">
                   <table
@@ -37,72 +80,108 @@ export function HR() {
                         <tr key={i}>
                           <td>
                             <input
+                              data-userpos={i}
                               type="text"
                               class="form-control"
                               onChange={handleChange}
                               id="nif"
+                              data-inpupd={"nif" + i}
+                              data-iduser={v.uid}
                               defaultValue={v.nif}
                             />
                           </td>
                           <td>
                             <input
+                              data-userpos={i}
                               type="text"
                               class="form-control"
                               onChange={handleChange}
                               id="name"
+                              data-inpupd={"name" + i}
+                              data-iduser={v.uid}
                               defaultValue={v.name}
                             />
                           </td>
                           <td>
                             <input
+                              data-userpos={i}
                               type="text"
                               class="form-control"
                               onChange={handleChange}
                               id="fsurname"
+                              data-inpupd={"fsurname" + i}
+                              data-iduser={v.uid}
                               defaultValue={v.fsurname}
                             />
                           </td>
                           <td>
                             <input
+                              data-userpos={i}
                               type="text"
                               class="form-control"
                               onChange={handleChange}
                               id="ssurname"
+                              data-inpupd={"ssurname" + i}
+                              data-iduser={v.uid}
                               defaultValue={v.ssurname}
                             />
                           </td>
                           <td>
                             <input
+                              data-userpos={i}
                               type="text"
                               class="form-control"
                               onChange={handleChange}
                               id="phone"
+                              data-inpupd={"phone" + i}
+                              data-iduser={v.uid}
                               defaultValue={v.phone}
                             />
                           </td>
                           <td>
                             <input
+                              data-userpos={i}
                               type="text"
                               class="form-control"
                               onChange={handleChange}
                               id="type"
+                              data-inpupd={"type" + i}
+                              data-iduser={v.uid}
                               defaultValue={v.type}
                             />
                           </td>
                           <td>
-                            <input
-                              type="text"
-                              class="form-control"
+                            <select
+                              data-userpos={i}
+                              class="form-select"
                               onChange={handleChange}
-                              id="depname"
-                              defaultValue={v.depname}
-                            />
+                              id="department"
+                              data-inpupd={"department" + i}
+                              data-iduser={v.uid}
+                              defaultValue={v.did}
+                            >
+                              <option value="null"></option>
+                              {depts.map((vd, i) => (
+                                <option key={i} value={vd.id}>
+                                  {vd.name}
+                                </option>
+                              ))}
+                            </select>
                           </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
+              </div>
+              <div className="row">
+                <button
+                  type="button"
+                  onClick={sendChanges}
+                  class="btn btn-success"
+                >
+                  Update
+                </button>
               </div>
             </div>
           </div>

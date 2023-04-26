@@ -6,7 +6,7 @@ export function Socket() {
   const [connected, setConnected] = useState(false);
   const [requested, setRequested] = useState(null);
   const { socket, request, setSocketResponse } = useContext(socketContext);
-  const { setHrUsers } = useContext(appContext);
+  const { setHrUsers, setDepts } = useContext(appContext);
 
   useEffect(() => {
     addSocketListeners();
@@ -28,7 +28,7 @@ export function Socket() {
 
     socket.on("updatedProfileInfo", (args) => {
       if (args.error) {
-        setSocketResponse({ error: args.error });
+        setSocketResponse({ error: args.error.message });
       } else {
         setSocketResponse({ result: "Updated Correctly!" });
       }
@@ -36,9 +36,29 @@ export function Socket() {
 
     socket.on("getHrUsersOk", (args) => {
       if (args.hasOwnProperty("err")) {
+        alert(`It has been an error: ${args.err.message}`);
+      } else {
+        console.log(args);
+        setHrUsers(args.res);
+      }
+    });
+
+    socket.on("getDeptsOK", (args) => {
+      if (args.hasOwnProperty("err")) {
+        alert(`It has been an error: ${args.err.message}`);
+      } else {
+        console.log(args);
+        setDepts(args.res);
+      }
+    });
+
+    socket.on("updatedInfoHR", (args) => {
+      console.log(args);
+      if (args.err != "NO") {
+        console.log(args.err.sqlMessage);
         alert(`It has been an error: ${args.err}`);
       } else {
-        setHrUsers(args.res);
+        setSocketResponse({ result: "Someone updated, please, enter again!" });
       }
     });
   }

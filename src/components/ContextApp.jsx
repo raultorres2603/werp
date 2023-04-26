@@ -10,13 +10,16 @@ export function ContextProvider({ children }) {
   );
   const { setRequest } = useContext(socketContext);
   const [hrUsers, setHrUsers] = useState([]);
+  const [depts, setDepts] = useState([]);
 
   useEffect(() => {
     setRequest({ req: "getHrUsers", fields: {} });
   }, []);
 
   return (
-    <appContext.Provider value={{ savePage, page, hrUsers, setHrUsers }}>
+    <appContext.Provider
+      value={{ savePage, page, depts, setDepts, hrUsers, setHrUsers }}
+    >
       {children}
     </appContext.Provider>
   );

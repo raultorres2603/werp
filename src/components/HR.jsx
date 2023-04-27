@@ -15,12 +15,6 @@ export function HR() {
   }
 
   useEffect(() => {
-    console.log("hrUsersCambio");
-    document.getElementById("updateInfoHR").disabled = true;
-  }, [hrUsers]);
-
-  useEffect(() => {
-    document.getElementById("updateInfoHR").disabled = false;
     setSocketResponse(null);
   }, []);
 
@@ -162,14 +156,27 @@ export function HR() {
                 </div>
               </div>
               <div className="row">
-                <button
-                  type="button"
-                  id="updateInfoHR"
-                  onClick={sendChanges}
-                  class="btn btn-success"
-                >
-                  Update
-                </button>
+                {socketResponse && (
+                  <button
+                    type="button"
+                    id="updateInfoHR"
+                    onClick={sendChanges}
+                    class="btn btn-success"
+                    disabled
+                  >
+                    Update
+                  </button>
+                )}
+                {socketResponse == null && (
+                  <button
+                    type="button"
+                    id="updateInfoHR"
+                    onClick={sendChanges}
+                    class="btn btn-success"
+                  >
+                    Update
+                  </button>
+                )}
               </div>
             </div>
           </div>

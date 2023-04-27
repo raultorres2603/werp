@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { appContext } from "./ContextApp";
+import { socketContext } from "./ContextSocket";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { Main } from "./Main";
@@ -9,6 +10,18 @@ import { HR } from "./HR";
 
 export function ViewController() {
   const { page } = useContext(appContext);
+  const { setRequest } = useContext(socketContext);
+
+  function roomComprobation() {
+    switch (page) {
+      case "hr":
+        setRequest({ req: "roomComprob", fields: { page: page } });
+        break;
+
+      default:
+        break;
+    }
+  }
 
   function handlePage() {
     document.title = `WERP - ${page.toUpperCase()}`;

@@ -3,7 +3,12 @@ import { Users } from "../lib/Users";
 import { socketContext } from "./ContextSocket";
 
 export function Resume() {
-  const { setRequest, socketResponse } = useContext(socketContext);
+  const { setRequest, socketResponse, setSocketResponse } =
+    useContext(socketContext);
+
+  useEffect(() => {
+    setSocketResponse(null);
+  }, []);
 
   return (
     <div className="col-12-sm">

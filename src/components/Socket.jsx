@@ -6,7 +6,7 @@ export function Socket() {
   const [connected, setConnected] = useState(false);
   const [requested, setRequested] = useState(null);
   const { socket, request, setSocketResponse } = useContext(socketContext);
-  const { setHrUsers, setDepts } = useContext(appContext);
+  const { setHrUsers, setDepts, savePage, page } = useContext(appContext);
 
   useEffect(() => {
     addSocketListeners();
@@ -24,6 +24,14 @@ export function Socket() {
     socket.on("connect", () => {
       setConnected(true);
       console.log(socket);
+    });
+
+    socket.on("askEnterPage", (args) => {
+      console.log("Quieres entrar?");
+      let page = args.page;
+      if (confirm(`Is your turn to go to ${page} page, do you want to go?`)) {
+        savePage("hr");
+      }
     });
 
     socket.on("updatedProfileInfo", (args) => {
@@ -60,6 +68,40 @@ export function Socket() {
       } else {
         setSocketResponse({ result: "Someone updated, please, enter again!" });
       }
+    });
+
+    socket.on("roomComprobOk", (args) => {
+      if (args.hasOwnProperty("position")) {
+        alert(
+          `You can't enter to this page, there's one person inside, you're on ${args.position} position.`
+        );
+        savePage("main");
+      } else if (args.hasOwnProperty("add")) {
+        switch (args.add) {
+          case "request":
+            if (
+              confirm(
+                "Do you want to join the queue and be notified when you have access?"
+              )
+            ) {
+              socket.emit("addOnQueue", {
+                socketid: socket.id,
+                page: args.page,
+              });
+            } else {
+              savePage("main");
+            }
+            break;
+
+          default:
+            break;
+        }
+      }
+    });
+
+    socket.on("addOnQueueOK", (args) => {
+      console.log("added on queue");
+      savePage("main");
     });
   }
 

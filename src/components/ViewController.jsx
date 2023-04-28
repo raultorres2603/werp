@@ -12,16 +12,11 @@ export function ViewController() {
   const { page } = useContext(appContext);
   const { setRequest } = useContext(socketContext);
 
-  function roomComprobation() {
-    switch (page) {
-      case "hr":
-        setRequest({ req: "roomComprob", fields: { page: page } });
-        break;
-
-      default:
-        break;
+  useEffect(() => {
+    if (page != "hr") {
+      setRequest({ req: "updateQueue", fields: { page: "hr" } });
     }
-  }
+  }, [page]);
 
   function handlePage() {
     document.title = `WERP - ${page.toUpperCase()}`;

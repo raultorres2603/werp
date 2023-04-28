@@ -1,22 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { Alert } from "./Alert";
 import { appContext } from "./ContextApp";
 import { socketContext } from "./ContextSocket";
 
 export function HR() {
-  const { hrUsers, depts } = useContext(appContext);
+  const { hrUsers, depts, page } = useContext(appContext);
   const { setRequest, socketResponse, setSocketResponse } =
     useContext(socketContext);
   const [fields, setFields] = useState([]);
+
+  useEffect(() => {
+    setSocketResponse(null);
+    setRequest({ req: "roomComprob", fields: { page: page } });
+  }, []);
 
   function handleChange(ev) {
     hrUsers[ev.target.dataset.userpos][ev.target.id] = ev.target.value;
     console.log(hrUsers);
   }
-
-  useEffect(() => {
-    setSocketResponse(null);
-  }, []);
 
   function renderUsers() {
     return hrUsers.map((vu, iu) => (

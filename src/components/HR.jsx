@@ -12,6 +12,9 @@ export function HR() {
   useEffect(() => {
     setSocketResponse(null);
     setRequest({ req: "roomComprob", fields: { page: page } });
+    return () => {
+      setRequest({ req: "updateQueue", fields: { page: "hr" } });
+    };
   }, []);
 
   function handleChange(ev) {

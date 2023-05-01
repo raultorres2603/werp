@@ -12,12 +12,6 @@ export function ViewController() {
   const { page } = useContext(appContext);
   const { setRequest } = useContext(socketContext);
 
-  useEffect(() => {
-    if (page != "hr") {
-      setRequest({ req: "updateQueue", fields: { page: "hr" } });
-    }
-  }, [page]);
-
   function handlePage() {
     document.title = `WERP - ${page.toUpperCase()}`;
     switch (page) {

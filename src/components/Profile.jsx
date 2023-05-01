@@ -15,7 +15,7 @@ export function Profile() {
       console.log(profileInfo);
       setInfoFilled(true);
     });
-  }, [infoFilled]);
+  }, []);
 
   useEffect(() => {
     setSocketResponse(null);

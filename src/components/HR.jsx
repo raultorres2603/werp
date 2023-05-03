@@ -13,6 +13,7 @@ export function HR() {
     setSocketResponse(null);
     setRequest({ req: "roomComprob", fields: { page: page } });
     return () => {
+      console.log("unmounted");
       setRequest({ req: "updateQueue", fields: { page: "hr" } });
     };
   }, []);
@@ -23,100 +24,104 @@ export function HR() {
   }
 
   function renderUsers() {
-    return hrUsers.map((vu, iu) => (
-      <tr key={iu}>
-        <td>
-          <input
-            data-userpos={iu}
-            type="text"
-            class="form-control"
-            onChange={handleChange}
-            id="nif"
-            data-inpupd={"nif" + iu}
-            data-iduser={vu.uid}
-            defaultValue={vu.nif}
-          />
-        </td>
-        <td>
-          <input
-            data-userpos={iu}
-            type="text"
-            class="form-control"
-            onChange={handleChange}
-            id="name"
-            data-inpupd={"name" + iu}
-            data-iduser={vu.uid}
-            defaultValue={vu.name}
-          />
-        </td>
-        <td>
-          <input
-            data-userpos={iu}
-            type="text"
-            class="form-control"
-            onChange={handleChange}
-            id="fsurname"
-            data-inpupd={"fsurname" + iu}
-            data-iduser={vu.uid}
-            defaultValue={vu.fsurname}
-          />
-        </td>
-        <td>
-          <input
-            data-userpos={iu}
-            type="text"
-            class="form-control"
-            onChange={handleChange}
-            id="ssurname"
-            data-inpupd={"ssurname" + iu}
-            data-iduser={vu.uid}
-            defaultValue={vu.ssurname}
-          />
-        </td>
-        <td>
-          <input
-            data-userpos={iu}
-            type="text"
-            class="form-control"
-            onChange={handleChange}
-            id="phone"
-            data-inpupd={"phone" + iu}
-            data-iduser={vu.uid}
-            defaultValue={vu.phone}
-          />
-        </td>
-        <td>
-          <input
-            data-userpos={iu}
-            type="text"
-            class="form-control"
-            onChange={handleChange}
-            id="type"
-            data-inpupd={"type" + iu}
-            data-iduser={vu.uid}
-            defaultValue={vu.type}
-          />
-        </td>
-        <td>
-          <select
-            data-userpos={iu}
-            class="form-select"
-            onChange={handleChange}
-            id="department"
-            data-inpupd={"department" + iu}
-            data-iduser={vu.uid}
-            defaultValue={vu.did}
-          >
-            <option value="null"></option>
-            {depts.map((vd, id) => (
-              <option key={id} value={vd.id}>
-                {vd.name}
-              </option>
-            ))}
-          </select>
-        </td>
-      </tr>
-    ));
+    if (socketResponse) {
+      if (socketResponse.req != "askQueue") {
+        return hrUsers.map((vu, iu) => (
+          <tr key={iu}>
+            <td>
+              <input
+                data-userpos={iu}
+                type="text"
+                class="form-control"
+                onChange={handleChange}
+                id="nif"
+                data-inpupd={"nif" + iu}
+                data-iduser={vu.uid}
+                defaultValue={vu.nif}
+              />
+            </td>
+            <td>
+              <input
+                data-userpos={iu}
+                type="text"
+                class="form-control"
+                onChange={handleChange}
+                id="name"
+                data-inpupd={"name" + iu}
+                data-iduser={vu.uid}
+                defaultValue={vu.name}
+              />
+            </td>
+            <td>
+              <input
+                data-userpos={iu}
+                type="text"
+                class="form-control"
+                onChange={handleChange}
+                id="fsurname"
+                data-inpupd={"fsurname" + iu}
+                data-iduser={vu.uid}
+                defaultValue={vu.fsurname}
+              />
+            </td>
+            <td>
+              <input
+                data-userpos={iu}
+                type="text"
+                class="form-control"
+                onChange={handleChange}
+                id="ssurname"
+                data-inpupd={"ssurname" + iu}
+                data-iduser={vu.uid}
+                defaultValue={vu.ssurname}
+              />
+            </td>
+            <td>
+              <input
+                data-userpos={iu}
+                type="text"
+                class="form-control"
+                onChange={handleChange}
+                id="phone"
+                data-inpupd={"phone" + iu}
+                data-iduser={vu.uid}
+                defaultValue={vu.phone}
+              />
+            </td>
+            <td>
+              <input
+                data-userpos={iu}
+                type="text"
+                class="form-control"
+                onChange={handleChange}
+                id="type"
+                data-inpupd={"type" + iu}
+                data-iduser={vu.uid}
+                defaultValue={vu.type}
+              />
+            </td>
+            <td>
+              <select
+                data-userpos={iu}
+                class="form-select"
+                onChange={handleChange}
+                id="department"
+                data-inpupd={"department" + iu}
+                data-iduser={vu.uid}
+                defaultValue={vu.did}
+              >
+                <option value="null"></option>
+                {depts.map((vd, id) => (
+                  <option key={id} value={vd.id}>
+                    {vd.name}
+                  </option>
+                ))}
+              </select>
+            </td>
+          </tr>
+        ));
+      }
+    }
   }
 
   function sendChanges() {

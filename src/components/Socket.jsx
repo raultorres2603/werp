@@ -5,7 +5,8 @@ import { socketContext } from "./ContextSocket";
 export function Socket() {
   const [connected, setConnected] = useState(false);
   const [requested, setRequested] = useState(null);
-  const { socket, request, setSocketResponse } = useContext(socketContext);
+  const { socket, request, setSocketResponse, setRequest } =
+    useContext(socketContext);
   const { setHrUsers, setDepts, savePage, page } = useContext(appContext);
 
   useEffect(() => {
@@ -29,9 +30,11 @@ export function Socket() {
     socket.on("askEnterPage", (args) => {
       console.log("Quieres entrar?");
       let page = args.page;
-      if (confirm(`Is your turn to go to ${page} page, do you want to go?`)) {
-        savePage("hr");
-      }
+      setSocketResponse({
+        req: "askEnter",
+        text: `Is your turn to go to ${page} page, do you want to go?`,
+        page: page,
+      });
     });
 
     socket.on("updatedProfileInfo", (args) => {
@@ -79,18 +82,11 @@ export function Socket() {
       } else if (args.hasOwnProperty("add")) {
         switch (args.add) {
           case "request":
-            if (
-              confirm(
-                "Do you want to join the queue and be notified when you have access?"
-              )
-            ) {
-              socket.emit("addOnQueue", {
-                socketid: socket.id,
-                page: args.page,
-              });
-            } else {
-              savePage("main");
-            }
+            setSocketResponse({
+              req: "askQueue",
+              text: `Do you want to join the queue and be notified when you have acces? You can't enter now`,
+              page: page,
+            });
             break;
 
           default:

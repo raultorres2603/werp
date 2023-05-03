@@ -63,18 +63,22 @@ export function Alert() {
             {socketResponse.text}
             <div className="row">
               <div className="col">
-                <button type="button" onClick={goToPage} class="btn btn-dark">
-                  Go to page!
-                </button>
+                <div class="d-grid gap-2">
+                  <button type="button" onClick={goToPage} class="btn btn-dark">
+                    Go to page!
+                  </button>
+                </div>
               </div>
               <div className="col">
-                <button
-                  type="button"
-                  onClick={updateQueue}
-                  class="btn btn-danger"
-                >
-                  Don't go.
-                </button>
+                <div class="d-grid gap-2">
+                  <button
+                    type="button"
+                    onClick={updateQueue}
+                    class="btn btn-danger"
+                  >
+                    Don't go.
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -88,14 +92,18 @@ export function Alert() {
             {socketResponse.text}
             <div className="row">
               <div className="col">
-                <button type="button" onClick={addQueue} class="btn btn-dark">
-                  Add me on queue!
-                </button>
+                <div class="d-grid gap-2">
+                  <button type="button" onClick={addQueue} class="btn btn-dark">
+                    Add me on queue!
+                  </button>
+                </div>
               </div>
               <div className="col">
-                <button type="button" onClick={cancel} class="btn btn-danger">
-                  Don't go.
-                </button>
+                <div class="d-grid gap-2">
+                  <button type="button" onClick={cancel} class="btn btn-danger">
+                    Don't go.
+                  </button>
+                </div>
               </div>
             </div>
           </div>

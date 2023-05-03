@@ -7,10 +7,6 @@ export function Resume() {
   const { setRequest, socketResponse, setSocketResponse } =
     useContext(socketContext);
 
-  useEffect(() => {
-    setSocketResponse(null);
-  }, []);
-
   return (
     <div className="col-12-sm">
       <div

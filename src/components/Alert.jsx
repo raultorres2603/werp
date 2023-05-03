@@ -95,6 +95,25 @@ export function Alert() {
             </div>
           </div>
         </div>;
+      } else if (socketResponse.req == "waitPosition") {
+        <div
+          className="alert alert-info alert-dismissible fade show"
+          role="alert"
+        >
+          {socketResponse.text}
+          <div className="row">
+            <div className="col">
+              <button type="button" onClick={addQueue} class="btn btn-dark">
+                Go to page!
+              </button>
+            </div>
+            <div className="col">
+              <button type="button" onClick={cancel} class="btn btn-danger">
+                Don't go.
+              </button>
+            </div>
+          </div>
+        </div>;
       }
     }
   }

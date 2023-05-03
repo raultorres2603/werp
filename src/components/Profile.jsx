@@ -17,10 +17,6 @@ export function Profile() {
     });
   }, []);
 
-  useEffect(() => {
-    setSocketResponse(null);
-  }, []);
-
   function handleSubmit(ev) {
     ev.preventDefault();
     console.log(ev);

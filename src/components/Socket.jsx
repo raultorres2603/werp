@@ -75,17 +75,18 @@ export function Socket() {
 
     socket.on("roomComprobOk", (args) => {
       if (args.hasOwnProperty("position")) {
-        alert(
-          `You can't enter to this page, there's one person inside, you're on ${args.position} position.`
-        );
-        savePage("main");
+        setSocketResponse({
+          req: "waitPosition",
+          text: `You can't enter, you're on ${args.position} to enter`,
+          page: args.page,
+        });
       } else if (args.hasOwnProperty("add")) {
         switch (args.add) {
           case "request":
             setSocketResponse({
               req: "askQueue",
               text: `Do you want to join the queue and be notified when you have acces? You can't enter now`,
-              page: page,
+              page: args.page,
             });
             break;
 

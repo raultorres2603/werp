@@ -3,7 +3,7 @@ import { socketContext } from "./ContextSocket";
 import { appContext } from "./ContextApp";
 
 export function Alert() {
-  const { setRequest, socketResponse, setSocketResponse, socket } =
+  const { setRequest, socketResponse, setSocketResponse } =
     useContext(socketContext);
 
   const { savePage, page } = useContext(appContext);
@@ -19,7 +19,7 @@ export function Alert() {
   function addQueue() {
     setRequest({
       req: "addOnQueueAlert",
-      fields: { socketId: socket.id, page: socketResponse.page },
+      fields: { socketId: socketResponse.socket, page: socketResponse.page },
     });
     setSocketResponse(null);
   }
@@ -30,6 +30,7 @@ export function Alert() {
   }
 
   function cancel() {
+    savePage("main");
     setSocketResponse(null);
   }
 
@@ -54,66 +55,65 @@ export function Alert() {
           </div>
         );
       } else if (socketResponse.req == "askEnter") {
-        <div
-          className="alert alert-info alert-dismissible fade show"
-          role="alert"
-        >
-          {socketResponse.text}
-          <div className="row">
-            <div className="col">
-              <button type="button" onClick={goToPage} class="btn btn-dark">
-                Go to page!
-              </button>
-            </div>
-            <div className="col">
-              <button
-                type="button"
-                onClick={updateQueue}
-                class="btn btn-danger"
-              >
-                Don't go.
-              </button>
-            </div>
-          </div>
-        </div>;
-      } else if (socketResponse.req == "askQueue") {
-        <div
-          className="alert alert-info alert-dismissible fade show"
-          role="alert"
-        >
-          {socketResponse.text}
-          <div className="row">
-            <div className="col">
-              <button type="button" onClick={addQueue} class="btn btn-dark">
-                Go to page!
-              </button>
-            </div>
-            <div className="col">
-              <button type="button" onClick={cancel} class="btn btn-danger">
-                Don't go.
-              </button>
+        return (
+          <div
+            className="alert alert-info alert-dismissible fade show"
+            role="alert"
+          >
+            {socketResponse.text}
+            <div className="row">
+              <div className="col">
+                <button type="button" onClick={goToPage} class="btn btn-dark">
+                  Go to page!
+                </button>
+              </div>
+              <div className="col">
+                <button
+                  type="button"
+                  onClick={updateQueue}
+                  class="btn btn-danger"
+                >
+                  Don't go.
+                </button>
+              </div>
             </div>
           </div>
-        </div>;
+        );
+      } else if (socketResponse.req == "askQueueAlert") {
+        return (
+          <div
+            className="alert alert-info alert-dismissible fade show"
+            role="alert"
+          >
+            {socketResponse.text}
+            <div className="row">
+              <div className="col">
+                <button type="button" onClick={addQueue} class="btn btn-dark">
+                  Add me on queue!
+                </button>
+              </div>
+              <div className="col">
+                <button type="button" onClick={cancel} class="btn btn-danger">
+                  Don't go.
+                </button>
+              </div>
+            </div>
+          </div>
+        );
       } else if (socketResponse.req == "waitPosition") {
-        <div
-          className="alert alert-info alert-dismissible fade show"
-          role="alert"
-        >
-          {socketResponse.text}
-          <div className="row">
-            <div className="col">
-              <button type="button" onClick={addQueue} class="btn btn-dark">
-                Go to page!
-              </button>
-            </div>
-            <div className="col">
+        return (
+          <div
+            className="alert alert-info alert-dismissible fade show"
+            role="alert"
+          >
+            {socketResponse.text}
+            <div className="row">
               <button type="button" onClick={cancel} class="btn btn-danger">
-                Don't go.
+                Go to Main.
               </button>
             </div>
           </div>
-        </div>;
+        );
       }
     }
   }

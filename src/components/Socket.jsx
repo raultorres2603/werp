@@ -84,9 +84,10 @@ export function Socket() {
         switch (args.add) {
           case "request":
             setSocketResponse({
-              req: "askQueue",
+              req: "askQueueAlert",
               text: `Do you want to join the queue and be notified when you have acces? You can't enter now`,
               page: args.page,
+              socket: args.socket,
             });
             break;
 

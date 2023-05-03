@@ -27,7 +27,7 @@ export function HR() {
   function renderUsers() {
     if (socketResponse) {
       if (
-        socketResponse.req == "askQueue" ||
+        socketResponse.req == "askQueueAlert" ||
         socketResponse.req == "waitPosition"
       ) {
         return "Can't show info";

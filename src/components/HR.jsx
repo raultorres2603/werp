@@ -266,26 +266,14 @@ export function HR() {
                 </div>
               </div>
               <div className="row">
-                {socketResponse && socketResponse.req && (
-                  <button
-                    type="button"
-                    id="updateInfoHR"
-                    class="btn btn-success"
-                    disabled
-                  >
-                    Update
-                  </button>
-                )}
-                {socketResponse == null && (
-                  <button
-                    type="button"
-                    id="updateInfoHR"
-                    onClick={sendChanges}
-                    class="btn btn-success"
-                  >
-                    Update
-                  </button>
-                )}
+                <button
+                  type="button"
+                  id="updateInfoHR"
+                  onClick={sendChanges}
+                  class="btn btn-success"
+                >
+                  Update
+                </button>
               </div>
             </div>
           </div>

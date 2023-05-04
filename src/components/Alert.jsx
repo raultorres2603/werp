@@ -54,7 +54,7 @@ export function Alert() {
             {socketResponse.result}
           </div>
         );
-      } else if (socketResponse.req == "askEnter") {
+      } else if (socketResponse.req == "askEnter" && page != "hr") {
         return (
           <div
             className="alert alert-info alert-dismissible fade show"

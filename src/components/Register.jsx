@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import { Encrypter } from "../lib/Encrypter";
 import { Users } from "../lib/Users";
 import { appContext } from "./ContextApp";
+import { socketContext } from "./ContextSocket";
 
 export function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { savePage } = useContext(appContext);
+  const { setRequest } = useContext(socketContext);
 
   function changeView() {
     savePage("login");
@@ -40,6 +42,7 @@ export function Register() {
           break;
         case 200:
           sessionStorage.setItem("user", response.id);
+          setRequest({ req: "getHrUsers", fields: {} });
           savePage("main");
           break;
 

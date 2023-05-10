@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { appContext } from "./ContextApp";
 import { socketContext } from "./ContextSocket";
+import { Facturation } from "./Facturation";
 import { Login } from "./Login";
 import { Register } from "./Register";
 import { Main } from "./Main";
@@ -51,6 +52,15 @@ export function ViewController() {
           </>
         );
         break;
+
+      case "facturation":
+        return (
+          <>
+            {" "}
+            <Navbar />
+            <Facturation />
+          </>
+        );
 
       default:
         break;

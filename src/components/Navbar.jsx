@@ -72,7 +72,13 @@ export function Navbar() {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a
+                    className="dropdown-item"
+                    onClick={() => {
+                      changePage("facturation");
+                    }}
+                    href="#"
+                  >
                     Facturation
                   </a>
                 </li>

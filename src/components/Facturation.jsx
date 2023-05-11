@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { appContext } from "./ContextApp";
 import { socketContext } from "./ContextSocket";
 import ReactECharts from "echarts-for-react";
+import { Alert } from "./Alert";
 
 export function Facturation() {
   const { setRequest, socketResponse, setSocketResponse } =
@@ -42,20 +43,32 @@ export function Facturation() {
 
   function handleSubmit(ev) {
     ev.preventDefault();
+    console.log(ev);
+    setRequest({
+      req: "insertBill",
+      fields: {
+        fromDate: ev.target.elements.fromDate.value,
+        amount: ev.target.elements.amount.value,
+        iva: ev.target.elements.iva.value,
+        irpf: ev.target.elements.irpf.value,
+        user: sessionStorage.getItem("user"),
+      },
+    });
   }
 
   return (
-    <div className="facturation-container">
+    <div className="facturation-container" style={{ height: "100vh" }}>
       <div className="row">
         <div className="display-4 mb-4 text-center">My Bill Menu</div>
       </div>
       <div className="row mb-4">
         <div className="display-5 text-center">Insert Bill</div>
       </div>
+      <Alert />
       <div className="row">
         <form action="#" method="post" onSubmit={handleSubmit}>
           <div className="row">
-            <div className="col-3">
+            <div className="col-6">
               <div className="row">
                 <div class="input-group input-group-lg">
                   <span class="input-group-text" id="inputGroup-sizing-lg">
@@ -72,7 +85,7 @@ export function Facturation() {
                 </div>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-6">
               <div className="row">
                 <div class="input-group input-group-lg">
                   <span class="input-group-text" id="inputGroup-sizing-lg">
@@ -89,7 +102,9 @@ export function Facturation() {
                 </div>
               </div>
             </div>
-            <div className="col-3">
+          </div>
+          <div className="row mt-4">
+            <div className="col-6">
               <div className="row">
                 <div class="input-group input-group-lg">
                   <span class="input-group-text" id="inputGroup-sizing-lg">
@@ -98,6 +113,7 @@ export function Facturation() {
                   <input
                     type="number"
                     id="iva"
+                    defaultValue="21"
                     required
                     class="form-control"
                     aria-label="Sizing example input"
@@ -106,7 +122,7 @@ export function Facturation() {
                 </div>
               </div>
             </div>
-            <div className="col-3">
+            <div className="col-6">
               <div className="row">
                 <div class="input-group input-group-lg">
                   <span class="input-group-text" id="inputGroup-sizing-lg">

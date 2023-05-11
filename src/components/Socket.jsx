@@ -27,6 +27,24 @@ export function Socket() {
       console.log(socket);
     });
 
+    socket.on("insertBillOk", (args) => {
+      if (args.hasOwnProperty("error")) {
+        console.log(args.error);
+        setSocketResponse({
+          req: "insertBill",
+          text: `It was an error introducing the bill.`,
+          page: page,
+        });
+      } else {
+        console.log(args.res);
+        setSocketResponse({
+          req: "insertBill",
+          text: `Bill inserted!`,
+          page: page,
+        });
+      }
+    });
+
     socket.on("askEnterPage", (args) => {
       console.log("Quieres entrar?");
       let page = args.page;

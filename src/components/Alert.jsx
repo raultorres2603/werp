@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { socketContext } from "./ContextSocket";
 import { appContext } from "./ContextApp";
 
@@ -43,6 +43,12 @@ export function Alert() {
             role="alert"
           >
             {socketResponse.error}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
           </div>
         );
       } else if (socketResponse.result) {
@@ -52,6 +58,12 @@ export function Alert() {
             role="alert"
           >
             {socketResponse.result}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
           </div>
         );
       } else if (socketResponse.req == "askEnter" && page != "hr") {
@@ -120,6 +132,21 @@ export function Alert() {
                 Go to Main.
               </button>
             </div>
+          </div>
+        );
+      } else if (socketResponse.req == "insertBill" && page == "facturation") {
+        return (
+          <div
+            className="alert alert-info alert-dismissible fade show"
+            role="alert"
+          >
+            {socketResponse.text}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
           </div>
         );
       }

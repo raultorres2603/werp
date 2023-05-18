@@ -71,9 +71,7 @@ export function Facturation() {
       <div className="row">
         <div className="display-4 mb-4 text-center">My Bill Menu</div>
       </div>
-      <div className="row mb-4">
-        <div className="display-5 text-center">Insert Bill</div>
-      </div>
+
       <Alert />
       <div className="row">
         <form action="#" method="post" onSubmit={handleSubmit}>
@@ -158,9 +156,6 @@ export function Facturation() {
         </form>
       </div>
       <hr />
-      <div className="row mb-4">
-        <div className="display-5 text-center">Filter Bills</div>
-      </div>
       <div className="row">
         <div className="col-4">
           <div className="row">
@@ -200,24 +195,28 @@ export function Facturation() {
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="row mt-4">
-                <div className="row">
-                  <button
-                    type="button"
-                    class="btn btn-success align-middle fs-4"
-                    onClick={handleSearch}
-                  >
-                    Buscar
-                  </button>
-                </div>
-              </div>
+            <div className="row mt-3">
+              <select className="form-select" id="taxes">
+                <option selected>Open this select menu</option>
+                <option value="iva">IVA</option>
+                <option value="irpf">IRPF</option>
+                <option value="iva+irpf">IVA + IRPF</option>
+              </select>
+            </div>
+            <div className="row mt-4">
+              <button
+                type="button"
+                class="btn btn-success align-middle fs-4"
+                onClick={handleSearch}
+              >
+                Buscar
+              </button>
             </div>
           </div>
         </div>
         <div className="col-8">
           <div className="row">
-            <ResponsiveContainer width={"100%"} height={300}>
+            <ResponsiveContainer width={"95%"} height={300}>
               <BarChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />

@@ -149,83 +149,124 @@ export function Facturation() {
             </div>
           </div>
           <div className="row mt-4">
-            <button type="submit" class="btn btn-info align-middle fs-4">
-              Insertar
-            </button>
+            <div className="col-6">
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-info align-middle fs-4">
+                  Insertar
+                </button>
+              </div>
+            </div>
+            <div className="col-6">
+              <div class="d-grid gap-2">
+                <button
+                  type="button"
+                  class="btn btn-warning fs-4"
+                  data-bs-toggle="modal"
+                  data-bs-target="#reportModal"
+                >
+                  Reporte
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>
       <hr />
-      <div className="row">
-        <div className="col-4">
-          <div className="row">
-            <div className="col-6">
-              <div className="row">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-text" id="basic-addon1">
-                    From
-                  </span>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="from"
-                    onChange={handleDate}
-                    defaultValue={from}
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-6">
-              <div className="row">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-text" id="basic-addon1">
-                    To
-                  </span>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="to"
-                    onChange={handleDate}
-                    defaultValue={to}
-                    aria-label="Username"
-                    aria-describedby="basic-addon1"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row mt-3">
-              <select className="form-select" id="taxes">
-                <option selected>Open this select menu</option>
-                <option value="iva">IVA</option>
-                <option value="irpf">IRPF</option>
-                <option value="iva+irpf">IVA + IRPF</option>
-              </select>
-            </div>
-            <div className="row mt-4">
+
+      <div
+        class="modal fade"
+        id="reportModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-fullscreen">
+          <div class="modal-content">
+            <div class="modal-header bg-warning">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Report graphics
+              </h5>
               <button
                 type="button"
-                class="btn btn-success align-middle fs-4"
-                onClick={handleSearch}
-              >
-                Buscar
-              </button>
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-          </div>
-        </div>
-        <div className="col-8">
-          <div className="row">
-            <ResponsiveContainer width={"95%"} height={300}>
-              <BarChart data={data}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar type="monotone" dataKey="value" fill="#8884d8" />
-              </BarChart>
-            </ResponsiveContainer>
+            <div class="modal-body">
+              <div className="row">
+                <div className="col-6">
+                  <div className="row">
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-text" id="basic-addon1">
+                        From
+                      </span>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="from"
+                        onChange={handleDate}
+                        defaultValue={from}
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="row">
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-text" id="basic-addon1">
+                        To
+                      </span>
+                      <input
+                        type="date"
+                        class="form-control"
+                        id="to"
+                        onChange={handleDate}
+                        defaultValue={to}
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="row mt-3">
+                  <div className="col-6">
+                    <select className="form-select" id="taxes">
+                      <option selected>Open this select menu</option>
+                      <option value="iva">IVA</option>
+                      <option value="irpf">IRPF</option>
+                      <option value="iva+irpf">IVA + IRPF</option>
+                    </select>
+                  </div>
+                  <div className="col-6">
+                    <div className="row">
+                      <button
+                        type="button"
+                        class="btn btn-success align-middle fs-4"
+                        onClick={handleSearch}
+                      >
+                        Buscar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div className="row">
+                <ResponsiveContainer width={"100%"} height={300}>
+                  <BarChart data={data}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar type="monotone" dataKey="value" fill="#8884d8" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
           </div>
         </div>
       </div>

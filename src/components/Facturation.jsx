@@ -232,24 +232,14 @@ export function Facturation() {
                   </div>
                 </div>
                 <div className="row mt-3">
-                  <div className="col-6">
-                    <select className="form-select" id="taxes">
-                      <option selected>Open this select menu</option>
-                      <option value="iva">IVA</option>
-                      <option value="irpf">IRPF</option>
-                      <option value="iva+irpf">IVA + IRPF</option>
-                    </select>
-                  </div>
-                  <div className="col-6">
-                    <div className="row">
-                      <button
-                        type="button"
-                        class="btn btn-success align-middle fs-4"
-                        onClick={handleSearch}
-                      >
-                        Buscar
-                      </button>
-                    </div>
+                  <div className="row">
+                    <button
+                      type="button"
+                      class="btn btn-success align-middle fs-4"
+                      onClick={handleSearch}
+                    >
+                      Buscar
+                    </button>
                   </div>
                 </div>
               </div>
@@ -263,6 +253,8 @@ export function Facturation() {
                     <Tooltip />
                     <Legend />
                     <Bar type="monotone" dataKey="value" fill="#8884d8" />
+                    <Bar type="monotone" dataKey="iva" fill="#FF3838" />
+                    <Bar type="monotone" dataKey="irpf" fill="#CC38FF" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>

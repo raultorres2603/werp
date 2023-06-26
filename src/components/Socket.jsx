@@ -85,7 +85,6 @@ export function Socket() {
       console.log(args);
       if (args.err != "NO") {
         console.log(args.err.sqlMessage);
-        alert(`It has been an error: ${args.err}`);
       } else {
         setSocketResponse({ result: "Update done!" });
       }

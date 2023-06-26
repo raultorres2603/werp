@@ -48,6 +48,9 @@ export function Alert() {
               class="btn-close"
               data-bs-dismiss="alert"
               aria-label="Close"
+              onClick={() => {
+                setSocketResponse(null);
+              }}
             ></button>
           </div>
         );
@@ -63,6 +66,9 @@ export function Alert() {
               class="btn-close"
               data-bs-dismiss="alert"
               aria-label="Close"
+              onClick={() => {
+                setSocketResponse(null);
+              }}
             ></button>
           </div>
         );
@@ -146,6 +152,9 @@ export function Alert() {
               class="btn-close"
               data-bs-dismiss="alert"
               aria-label="Close"
+              onClick={() => {
+                setSocketResponse(null);
+              }}
             ></button>
           </div>
         );

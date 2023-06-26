@@ -152,7 +152,7 @@ export function Facturation() {
             <div className="col-6">
               <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-info align-middle fs-4">
-                  Insertar
+                  Insert
                 </button>
               </div>
             </div>
@@ -164,7 +164,7 @@ export function Facturation() {
                   data-bs-toggle="modal"
                   data-bs-target="#reportModal"
                 >
-                  Reporte
+                  Report
                 </button>
               </div>
             </div>

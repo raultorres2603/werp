@@ -238,7 +238,7 @@ export function Facturation() {
                       class="btn btn-success align-middle fs-4"
                       onClick={handleSearch}
                     >
-                      Buscar
+                      Search
                     </button>
                   </div>
                 </div>

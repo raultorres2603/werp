@@ -46,6 +46,10 @@ export function Facturation() {
     });
   }
 
+  function handleInformation(e) {
+    console.log(e);
+  }
+
   function handleDate(ev) {
     switch (ev.target.id) {
       case "from":
@@ -246,7 +250,7 @@ export function Facturation() {
               <hr />
               <div className="row">
                 <ResponsiveContainer width={"100%"} height={300}>
-                  <BarChart data={data}>
+                  <BarChart data={data} onClick={handleInformation}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />

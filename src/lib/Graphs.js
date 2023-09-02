@@ -13,6 +13,16 @@ export class Graphs {
     return response.data;
   }
 
+  static async getDetail(date) {
+    let response = await axios.get(
+      `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
+        import.meta.env.VITE_PORT
+      }/graphs/details/${date}`
+    );
+
+    return response;
+  }
+
   static getMonth(month) {
     switch (month) {
       case 1:

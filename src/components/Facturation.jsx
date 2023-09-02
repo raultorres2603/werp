@@ -25,7 +25,7 @@ export function Facturation() {
       new Date().getMonth() + 1
     }-${new Date().getDate()}`
   );
-  const billDetails = [];
+  const [billDetails, setBillDetails] = useState([]);
   const [to, setTo] = useState(
     `${new Date().getFullYear()}-${
       new Date().getMonth() + 1
@@ -47,7 +47,7 @@ export function Facturation() {
     });
   }
 
-  function handleInformation(e) {
+  async function handleInformation(e) {
     console.log(e);
     let slash = e.activeLabel.indexOf("-");
     let month = e.activeLabel.substr(0, slash);
@@ -55,7 +55,8 @@ export function Facturation() {
       .substr(slash, e.activeLabel.length - 1)
       .replace("-", "");
 
-    setRequest({ req: "detailBilling", fields: { month: month, year: year } });
+    let dataRes = await Graphs.getDetail(`${year}-${month}`);
+    setBillDetails(dataRes);
   }
 
   function handleDate(ev) {

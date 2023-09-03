@@ -55,8 +55,13 @@ export function Facturation() {
       .substr(slash, e.activeLabel.length - 1)
       .replace("-", "");
 
-    let dataRes = await Graphs.getDetail(`${year}-${month}`);
-    setBillDetails(dataRes);
+    let dataRes = await Graphs.getDetail(
+      `${year}-${month}`,
+      e.activePayload[1].value,
+      e.activePayload[2].value
+    );
+    console.log(dataRes);
+    setBillDetails(dataRes.data.results);
   }
 
   function handleDate(ev) {
@@ -270,6 +275,42 @@ export function Facturation() {
                     <Bar type="monotone" dataKey="irpf" fill="#CC38FF" />
                   </BarChart>
                 </ResponsiveContainer>
+              </div>
+              <hr />
+              <div className="row text-center">
+                <div className="fs-1">Detail</div>
+              </div>
+              <div className="row">
+                <table class="table table-hover">
+                  <thead className="bg-dark text-white">
+                    <tr>
+                      <th>ID</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>IVA</th>
+                      <th>IRPF</th>
+                      <th>User</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {billDetails.map((element, index) => (
+                      <tr key={index}>
+                        <td>{element.id}</td>
+                        <td>
+                          {
+                            new Date(element.fromDate)
+                              .toLocaleString("en-GB")
+                              .split(",")[0]
+                          }
+                        </td>
+                        <td>{element.amount}</td>
+                        <td>{element.iva}</td>
+                        <td>{element.irpf}</td>
+                        <td>{element.alias}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

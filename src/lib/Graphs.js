@@ -13,11 +13,11 @@ export class Graphs {
     return response.data;
   }
 
-  static async getDetail(date) {
+  static async getDetail(date, iva, irpf) {
     let response = await axios.get(
       `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
         import.meta.env.VITE_PORT
-      }/graphs/details/${date}`
+      }/graphs/details/${date}/${iva}/${irpf}`
     );
 
     return response;

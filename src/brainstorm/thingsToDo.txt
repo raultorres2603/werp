@@ -1,0 +1,3 @@
+Pestaña de clientes donde podemos añadir clientes, eliminar y editar y, a su vez, asignar una factura a un cliente.
+Poner si la factura ha sido en efectivo, tarjeta, cheque, crypto, etc.
+Poder eliminar o editar, según tipo de usuario, factura en detalle de facturas.

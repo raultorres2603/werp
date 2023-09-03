@@ -1,3 +1,10 @@
-Pestaña de clientes donde podemos añadir clientes, eliminar y editar y, a su vez, asignar una factura a un cliente.
+Pestaña de clientes donde podemos añadir clientes y eliminar y, a su vez, asignar una factura a un cliente (id, nombre, dirección, tarjeta, entidad bancaria,
+fecha de creación, etc.).
 Poner si la factura ha sido en efectivo, tarjeta, cheque, crypto, etc.
 Poder eliminar o editar, según tipo de usuario, factura en detalle de facturas.
+Tabla de notas hacia clientes, es decir, apuntar observaciones.
+Tabla de incidencias hacia clientes donde poder asociar un titulo de incidencia + descripción y si está resuelta o no.
+Linea 5 y 6 estarán en las fichas de cliente donde, en el listado de clientes, le damos click a un cliente y se nos abre una página donde vemos toda su información (ficha) y allí,
+a su vez, ver historial de incidencias (incidencia en verde o roja según estado) y notas y poder crearlas.
+Poder ver en la ficha de cliente las facturas que se han hecho con este (como en el apartado de Bills - Report) y sus detalles y poder eliminarlas y editarlas.
+Página principal con resumen de los menús más importantes.

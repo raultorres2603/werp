@@ -25,12 +25,22 @@ export function Facturation() {
       new Date().getMonth() + 1
     }-${new Date().getDate()}`
   );
+  const [typeBill, setTypeBill] = useState(null);
   const [billDetails, setBillDetails] = useState([]);
   const [to, setTo] = useState(
     `${new Date().getFullYear()}-${
       new Date().getMonth() + 1
     }-${new Date().getDate()}`
   );
+
+  async function handleTypeBill(e) {
+    if (e.target.value == "") {
+      setTypeBill(null);
+    } else {
+      setTypeBill(await Graphs.getTypeBills());
+    }
+    console.log(typeBill);
+  }
 
   function handleSubmit(ev) {
     ev.preventDefault();
@@ -43,6 +53,7 @@ export function Facturation() {
         iva: ev.target.elements.iva.value,
         irpf: ev.target.elements.irpf.value,
         user: sessionStorage.getItem("user"),
+        typeBill: ev.target.elements.typeBill.value,
       },
     });
   }
@@ -124,6 +135,7 @@ export function Facturation() {
                     class="form-control"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-lg"
+                    onChange={handleTypeBill}
                   />
                 </div>
               </div>
@@ -150,18 +162,40 @@ export function Facturation() {
             </div>
             <div className="col-6">
               <div className="row">
-                <div class="input-group input-group-lg">
-                  <span class="input-group-text" id="inputGroup-sizing-lg">
-                    IRPF
-                  </span>
-                  <input
-                    type="number"
-                    id="irpf"
-                    required
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-lg"
-                  />
+                <div className="col-6">
+                  <div className="row">
+                    <div class="input-group input-group-lg">
+                      <span class="input-group-text" id="inputGroup-sizing-lg">
+                        IRPF
+                      </span>
+                      <input
+                        type="number"
+                        id="irpf"
+                        required
+                        class="form-control"
+                        aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-lg"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div className="row">
+                    <select
+                      disabled={typeBill ? false : true}
+                      defaultValue="0"
+                      required
+                      class="form-select form-select-lg mb-3"
+                      aria-label=".form-select-lg example"
+                      name="typeBill"
+                    >
+                      <option value="0">Type Bill</option>
+                      {typeBill &&
+                        typeBill.results.map((v, i) => (
+                          <option value={v.id}>{v.type}</option>
+                        ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>

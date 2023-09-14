@@ -3,6 +3,15 @@ import axios from "axios";
 export class Graphs {
   constructor() {}
 
+  static async getTypeBills() {
+    let response = await axios.get(
+      `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
+        import.meta.env.VITE_PORT
+      }/graphs/typeBills`
+    );
+    return response.data;
+  }
+
   static async getGraph(from, to) {
     let response = await axios.get(
       `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${

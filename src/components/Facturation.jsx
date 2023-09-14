@@ -192,7 +192,9 @@ export function Facturation() {
                       <option value="0">Type Bill</option>
                       {typeBill &&
                         typeBill.results.map((v, i) => (
-                          <option value={v.id}>{v.type}</option>
+                          <option key={i} value={v.id}>
+                            {v.type}
+                          </option>
                         ))}
                     </select>
                   </div>

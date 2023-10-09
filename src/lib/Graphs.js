@@ -12,6 +12,16 @@ export class Graphs {
     return response.data;
   }
 
+  static async deleteBill(idElement) {
+    let response = await axios.get(
+      `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${
+        import.meta.env.VITE_PORT
+      }/graphs/delete/${idElement}`
+    );
+
+    return response.data;
+  }
+
   static async getGraph(from, to) {
     let response = await axios.get(
       `${import.meta.env.VITE_PROTOCOL}://${import.meta.env.VITE_DOMAIN}:${

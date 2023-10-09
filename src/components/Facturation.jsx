@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { appContext } from "./ContextApp";
 import { socketContext } from "./ContextSocket";
+import { FileEarmarkX, PencilSquare } from "react-bootstrap-icons";
 import {
   LineChart,
   Line,
@@ -93,6 +94,22 @@ export function Facturation() {
   async function handleSearch(ev) {
     let dataRes = await Graphs.getGraph(from, to);
     setData(dataRes);
+  }
+
+  async function handleElminate(e) {
+    let idElement = e.target.dataset.element;
+    if (
+      confirm(`Are you sure you want to delete the bill with ID ${idElement}?`)
+    ) {
+      let responseDelete = await Graphs.deleteBill(idElement);
+      console.log(responseDelete);
+      if (responseDelete.res == 200) {
+        handleSearch();
+        setSocketResponse({ result: "Bill Eliminated Correctly" });
+      } else {
+        setSocketResponse({ error: "Error on delete Bill" });
+      }
+    }
   }
 
   return (
@@ -247,6 +264,7 @@ export function Facturation() {
                 aria-label="Close"
               ></button>
             </div>
+            <Alert />
             <div class="modal-body">
               <div className="row">
                 <div className="col-6">
@@ -318,7 +336,7 @@ export function Facturation() {
               </div>
               <div className="row">
                 <table class="table table-hover">
-                  <thead className="bg-dark text-white">
+                  <thead className="bg-dark text-white text-center">
                     <tr>
                       <th>ID</th>
                       <th>Date</th>
@@ -326,11 +344,13 @@ export function Facturation() {
                       <th>IVA</th>
                       <th>IRPF</th>
                       <th>User</th>
+                      <th>Edit</th>
+                      <th>Eliminate</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="text-center">
                     {billDetails.map((element, index) => (
-                      <tr key={index}>
+                      <tr key={index} id={`tr-${element.id}`}>
                         <td>{element.id}</td>
                         <td>
                           {
@@ -343,6 +363,25 @@ export function Facturation() {
                         <td>{element.iva}</td>
                         <td>{element.irpf}</td>
                         <td>{element.alias}</td>
+                        <td>
+                          <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-warning">
+                              <PencilSquare />
+                            </button>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="d-grid gap-2">
+                            <button
+                              type="button"
+                              class="btn btn-danger"
+                              data-element={element.id}
+                              onClick={handleElminate}
+                            >
+                              <FileEarmarkX />
+                            </button>
+                          </div>
+                        </td>
                       </tr>
                     ))}
                   </tbody>

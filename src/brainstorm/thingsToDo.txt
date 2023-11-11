@@ -1,6 +1,5 @@
 Pestaña de clientes donde podemos añadir clientes y eliminar y, a su vez, asignar una factura a un cliente (id, nombre, dirección, tarjeta, entidad bancaria,
 fecha de creación, etc.).
-Poner si la factura ha sido en efectivo, tarjeta, cheque, crypto, etc.
 Poder eliminar o editar, según tipo de usuario, factura en detalle de facturas.
 Tabla de notas hacia clientes, es decir, apuntar observaciones.
 Tabla de incidencias hacia clientes donde poder asociar un titulo de incidencia + descripción y si está resuelta o no.

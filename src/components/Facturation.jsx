@@ -105,6 +105,7 @@ export function Facturation() {
       console.log(responseDelete);
       if (responseDelete.res == 200) {
         handleSearch();
+        setBillDetails([]);
         setSocketResponse({ result: "Bill Eliminated Correctly" });
       } else {
         setSocketResponse({ error: "Error on delete Bill" });

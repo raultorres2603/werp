@@ -96,6 +96,10 @@ export function Facturation() {
     setData(dataRes);
   }
 
+  async function handleEdit(e) {
+    console.log(e);
+  }
+
   async function handleElminate(e) {
     let idElement = e.target.dataset.element;
     if (
@@ -366,7 +370,15 @@ export function Facturation() {
                         <td>{element.alias}</td>
                         <td>
                           <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-warning">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              data-element={element.id}
+                              data-amount={element.amount}
+                              data-iva={element.iva}
+                              data-irpf={element.irpf}
+                              onClick={handleEdit}
+                            >
                               <PencilSquare />
                             </button>
                           </div>

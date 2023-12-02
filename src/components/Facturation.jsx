@@ -33,6 +33,12 @@ export function Facturation() {
       new Date().getMonth() + 1
     }-${new Date().getDate()}`
   );
+  const [billEdit, setBillEdit] = useState({
+    id: null,
+    amount: null,
+    irpf: null,
+    iva: null,
+  });
 
   async function handleTypeBill(e) {
     if (e.target.value == "") {
@@ -97,7 +103,14 @@ export function Facturation() {
   }
 
   async function handleEdit(e) {
-    console.log(e);
+    let data = e.target.dataset;
+    setBillEdit({
+      id: data.element,
+      amount: data.amount,
+      irpf: data.irpf,
+      iva: data.iva,
+    });
+    console.log(billEdit);
   }
 
   async function handleElminate(e) {
@@ -377,6 +390,8 @@ export function Facturation() {
                               data-amount={element.amount}
                               data-iva={element.iva}
                               data-irpf={element.irpf}
+                              data-bs-toggle="modal"
+                              data-bs-target="#editBillModal"
                               onClick={handleEdit}
                             >
                               <PencilSquare />
@@ -401,6 +416,31 @@ export function Facturation() {
                 </table>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="editBillModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-info">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Edit Bill
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">. . .</div>
+            <div class="modal-footer"></div>
           </div>
         </div>
       </div>

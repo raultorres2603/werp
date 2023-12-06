@@ -45,52 +45,29 @@ export function Navbar() {
                 Profile
               </a>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item">
               <a
-                className="nav-link dropdown-toggle"
+                className="nav-link"
+                aria-current="page"
                 href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                onClick={() => {
+                  changePage("hr");
+                }}
               >
-                Sections
+                HR
               </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a
-                    className="dropdown-item"
-                    href="#"
-                    onClick={() => {
-                      changePage("hr");
-                    }}
-                  >
-                    HR
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a
-                    className="dropdown-item"
-                    onClick={() => {
-                      changePage("facturation");
-                    }}
-                    href="#"
-                  >
-                    Facturation
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Stock Control
-                  </a>
-                </li>
-              </ul>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                aria-current="page"
+                href="#"
+                onClick={() => {
+                  changePage("facturation");
+                }}
+              >
+                Facturation
+              </a>
             </li>
           </ul>
         </div>

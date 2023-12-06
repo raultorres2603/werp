@@ -110,7 +110,6 @@ export function Facturation() {
       irpf: data.irpf,
       iva: data.iva,
     });
-    console.log(billEdit);
   }
 
   async function handleElminate(e) {
@@ -439,7 +438,80 @@ export function Facturation() {
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">. . .</div>
+            <div class="modal-body">
+              <div className="row">
+                <div className="col-6">
+                  <div class="input-group mb-3">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                    >
+                      Bill's ID
+                    </span>
+                    <input
+                      id="billID"
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      defaultValue={billEdit.id}
+                      readOnly
+                      disabled
+                    />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                    >
+                      IRPF
+                    </span>
+                    <input
+                      id="billIRPF"
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      defaultValue={billEdit.irpf}
+                    />
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div class="input-group mb-3">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                    >
+                      Amount
+                    </span>
+                    <input
+                      id="billAmount"
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      defaultValue={billEdit.amount}
+                    />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span
+                      class="input-group-text"
+                      id="inputGroup-sizing-default"
+                    >
+                      IVA
+                    </span>
+                    <input
+                      id="billIVA"
+                      type="text"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-default"
+                      defaultValue={billEdit.iva}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="modal-footer"></div>
           </div>
         </div>

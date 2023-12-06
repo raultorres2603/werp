@@ -511,6 +511,22 @@ export function Facturation() {
                   </div>
                 </div>
               </div>
+              <div className="row">
+                <div className="col-6">
+                  <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-success">
+                      Confirm
+                    </button>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-danger">
+                      Discard
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer"></div>
           </div>

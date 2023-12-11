@@ -22,6 +22,14 @@ export function Socket() {
       setConnected(false);
     });
 
+    socket.on("editBillOk", (args) => {
+      if (args.error == 1) {
+        setSocketResponse({ error: "Can't update bill" });
+      } else {
+        setSocketResponse({ result: "Updated correctly" });
+      }
+    });
+
     socket.on("connect", () => {
       setConnected(true);
       console.log(socket);

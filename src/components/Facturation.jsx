@@ -102,7 +102,7 @@ export function Facturation() {
     setData(dataRes);
   }
 
-  async function handleEdit(e) {
+  function handleEdit(e) {
     let data = e.target.dataset;
     setBillEdit({
       id: data.element,
@@ -110,6 +110,33 @@ export function Facturation() {
       irpf: data.irpf,
       iva: data.iva,
     });
+  }
+
+  async function sendBillEdit(e) {
+    setRequest({
+      req: "editBill",
+      fields: {
+        billEdit: billEdit,
+      },
+    });
+  }
+
+  async function editBill(e) {
+    switch (e.target.id) {
+      case "billIVA":
+        billEdit.iva = e.target.value;
+        break;
+      case "billIRPF":
+        billEdit.irpf = e.target.value;
+        break;
+      case "billAmount":
+        billEdit.amount = e.target.value;
+        break;
+
+      default:
+        break;
+    }
+    console.log(billEdit);
   }
 
   async function handleElminate(e) {
@@ -440,6 +467,9 @@ export function Facturation() {
             </div>
             <div class="modal-body">
               <div className="row">
+                <Alert />
+              </div>
+              <div className="row">
                 <div className="col-6">
                   <div class="input-group mb-3">
                     <span
@@ -473,6 +503,7 @@ export function Facturation() {
                       aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-default"
                       defaultValue={billEdit.irpf}
+                      onChange={editBill}
                     />
                   </div>
                 </div>
@@ -491,6 +522,7 @@ export function Facturation() {
                       aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-default"
                       defaultValue={billEdit.amount}
+                      onChange={editBill}
                     />
                   </div>
                   <div class="input-group mb-3">
@@ -507,6 +539,7 @@ export function Facturation() {
                       aria-label="Sizing example input"
                       aria-describedby="inputGroup-sizing-default"
                       defaultValue={billEdit.iva}
+                      onChange={editBill}
                     />
                   </div>
                 </div>
@@ -514,7 +547,11 @@ export function Facturation() {
               <div className="row">
                 <div className="col-6">
                   <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-success">
+                    <button
+                      type="button"
+                      class="btn btn-success"
+                      onClick={sendBillEdit}
+                    >
                       Confirm
                     </button>
                   </div>

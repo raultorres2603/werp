@@ -119,6 +119,8 @@ export function Facturation() {
         billEdit: billEdit,
       },
     });
+    handleSearch();
+    setBillDetails([]);
   }
 
   async function editBill(e) {

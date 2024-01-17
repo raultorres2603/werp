@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react";
-import { appContext } from "./ContextApp";
 import { socketContext } from "./ContextSocket";
 import { FileEarmarkX, PencilSquare } from "react-bootstrap-icons";
 import {

@@ -30,6 +30,9 @@ export function ViewController() {
           <>
             {" "}
             <Navbar />
+            <div className="row">
+              <Chat />
+            </div>
             <Main />
           </>
         );
@@ -39,6 +42,9 @@ export function ViewController() {
           <>
             {" "}
             <Navbar />
+            <div className="row">
+              <Chat />
+            </div>
             <Profile />
           </>
         );
@@ -49,6 +55,9 @@ export function ViewController() {
           <>
             {" "}
             <Navbar />
+            <div className="row">
+              <Chat />
+            </div>
             <HR />
           </>
         );
@@ -59,6 +68,9 @@ export function ViewController() {
           <>
             {" "}
             <Navbar />
+            <div className="row">
+              <Chat />
+            </div>
             <Facturation />
           </>
         );
@@ -71,9 +83,6 @@ export function ViewController() {
   return (
     <div className="viewController">
       <div className="row">{handlePage()}</div>
-      <div className="row">
-        <Chat />
-      </div>
     </div>
   );
 }

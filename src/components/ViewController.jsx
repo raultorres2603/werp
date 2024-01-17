@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { appContext } from "./ContextApp";
+import Chat from "./Chat";
 import { socketContext } from "./ContextSocket";
 import { Facturation } from "./Facturation";
 import { Login } from "./Login";
@@ -67,5 +68,12 @@ export function ViewController() {
     }
   }
 
-  return <div className="viewController">{handlePage()}</div>;
+  return (
+    <div className="viewController">
+      <div className="row">{handlePage()}</div>
+      <div className="row">
+        <Chat />
+      </div>
+    </div>
+  );
 }

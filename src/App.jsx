@@ -4,6 +4,7 @@ import viteLogo from "/vite.svg";
 import { ContextProvider } from "./components/ContextApp";
 import { InitSocketProvider } from "./components/ContextInitSocket";
 import { ViewController } from "./components/ViewController";
+import Chat from "./components/Chat";
 import { Navbar } from "./components/Navbar";
 import { Socket } from "./components/Socket";
 import "bootstrap/dist/js/bootstrap";

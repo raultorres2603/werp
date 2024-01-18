@@ -35,10 +35,7 @@ export function Profile() {
 
   return (
     <div className="col-12-sm">
-      <div
-        className="profile-container mt-3"
-        style={{ width: "100vw", height: "100vh" }}
-      >
+      <div className="profile-container mt-3">
         <div className="card">
           <h5 className="card-header bg-info text-center fs-2">My Profile</h5>
           <div className="card-body">

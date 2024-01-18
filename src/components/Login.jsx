@@ -40,6 +40,7 @@ export function Login() {
           break;
         case 200:
           sessionStorage.setItem("user", response.id);
+          sessionStorage.setItem("aliasChat", response.alias);
           savePage("main");
           break;
 

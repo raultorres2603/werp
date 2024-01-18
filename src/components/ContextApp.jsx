@@ -8,6 +8,7 @@ export function ContextProvider({ children }) {
   const [page, savePage] = useState(
     sessionStorage.getItem("user") ? "main" : "login"
   );
+  const [messages, setMessages] = useState([]);
   const { setRequest } = useContext(socketContext);
   const [hrUsers, setHrUsers] = useState([]);
   const [depts, setDepts] = useState([]);
@@ -18,7 +19,16 @@ export function ContextProvider({ children }) {
 
   return (
     <appContext.Provider
-      value={{ savePage, page, depts, setDepts, hrUsers, setHrUsers }}
+      value={{
+        savePage,
+        page,
+        depts,
+        setDepts,
+        hrUsers,
+        setHrUsers,
+        messages,
+        setMessages,
+      }}
     >
       {children}
     </appContext.Provider>

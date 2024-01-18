@@ -1,17 +1,28 @@
 import { useState, useContext, useEffect } from "react";
 import { socketContext } from "./ContextSocket";
+import { appContext } from "./ContextApp";
 
 function Chat() {
-  const [messages, setMessages] = useState([]);
   const [myMessage, setMyMessage] = useState("");
   const { setRequest, socketResponse, setSocketResponse } =
     useContext(socketContext);
+  const { messages, setMessages } = useContext(appContext);
 
   function saveMessage(e) {
     let message = e.target.value;
     setMyMessage(message);
     // setMyMessage((myMessage) => [...myMessage, message]); --> Put on an array state
     console.log(myMessage);
+  }
+
+  function sendMessage(e) {
+    setRequest({
+      req: "sendMessageChat",
+      fields: {
+        message: myMessage,
+        alias: sessionStorage.getItem("aliasChat"),
+      },
+    });
   }
 
   return (
@@ -47,10 +58,15 @@ function Chat() {
             <div className="modal-body">
               <div
                 className="chatDiv border border-dark rounded"
-                style={{ maxHeight: "50vh", height: "50vh", overflow: "auto" }}
+                style={{
+                  maxHeight: "50vh",
+                  height: "50vh",
+                  overflow: "auto",
+                  maxWidth: "100%",
+                }}
               >
                 {messages.map((message, index) => (
-                  <div className="row" key={index}>
+                  <div className="row" key={index} style={{ marginLeft: "2%" }}>
                     {message}
                   </div>
                 ))}
@@ -69,6 +85,7 @@ function Chat() {
                         className="form-control"
                         onInput={saveMessage}
                         aria-label="Username"
+                        id="message"
                         aria-describedby="basic-addon1"
                       />
                     </div>
@@ -77,7 +94,12 @@ function Chat() {
                 <div className="col-2">
                   <div className="row">
                     <div className="d-grid gap-2">
-                      <button className="btn btn-success" type="button">
+                      <button
+                        className="btn btn-success"
+                        type="button"
+                        id="sendMessage"
+                        onClick={sendMessage}
+                      >
                         Send
                       </button>
                     </div>

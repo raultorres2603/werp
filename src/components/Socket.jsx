@@ -7,7 +7,8 @@ export function Socket() {
   const [requested, setRequested] = useState(null);
   const { socket, request, setSocketResponse, setRequest } =
     useContext(socketContext);
-  const { setHrUsers, setDepts, savePage, page } = useContext(appContext);
+  const { setHrUsers, setDepts, savePage, page, messages, setMessages } =
+    useContext(appContext);
 
   useEffect(() => {
     addSocketListeners();
@@ -20,6 +21,10 @@ export function Socket() {
   function addSocketListeners() {
     socket.on("disconnect", () => {
       setConnected(false);
+    });
+
+    socket.on("sendMessageChatOk", (args) => {
+      setMessages((messages) => [...messages, args.message]);
     });
 
     socket.on("editBillOk", (args) => {

@@ -3,59 +3,71 @@ import { socketContext } from "./ContextSocket";
 
 function Chat() {
   const [messages, setMessages] = useState([]);
+  const [myMessage, setMyMessage] = useState("");
   const { setRequest, socketResponse, setSocketResponse } =
     useContext(socketContext);
+
+  function saveMessage(e) {
+    let message = e.target.value;
+    setMyMessage(message);
+    // setMyMessage((myMessage) => [...myMessage, message]); --> Put on an array state
+    console.log(myMessage);
+  }
+
   return (
     <div className="chat d-grid gap-2 col-3 mx-auto">
       <button
         type="button"
-        class="btn btn-secondary text-center"
+        className="btn btn-secondary text-center"
         data-bs-toggle="modal"
         data-bs-target="#RTChat_Modal"
       >
         RTChat
       </button>
       <div
-        class="modal fade"
+        className="modal fade"
         id="RTChat_Modal"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header bg-warning text-center">
-              <h5 class="modal-title" id="RTChat_Modal_Label">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header bg-warning text-center">
+              <h5 className="modal-title" id="RTChat_Modal_Label">
                 Live Chat
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <div
                 className="chatDiv border border-dark rounded"
                 style={{ maxHeight: "50vh", height: "50vh", overflow: "auto" }}
               >
                 {messages.map((message, index) => (
-                  <div className="row">{message}</div>
+                  <div className="row" key={index}>
+                    {message}
+                  </div>
                 ))}
               </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <div className="row">
                 <div className="col-10">
                   <div className="row">
-                    <div class="input-group mb-3">
-                      <span class="input-group-text" id="basic-addon1">
+                    <div className="input-group mb-3">
+                      <span className="input-group-text" id="basic-addon1">
                         Your Message
                       </span>
                       <input
                         type="text"
-                        class="form-control"
+                        className="form-control"
+                        onInput={saveMessage}
                         aria-label="Username"
                         aria-describedby="basic-addon1"
                       />
@@ -64,8 +76,8 @@ function Chat() {
                 </div>
                 <div className="col-2">
                   <div className="row">
-                    <div class="d-grid gap-2">
-                      <button class="btn btn-success" type="button">
+                    <div className="d-grid gap-2">
+                      <button className="btn btn-success" type="button">
                         Send
                       </button>
                     </div>
